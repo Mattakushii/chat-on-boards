@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Float!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+}
+
+type Room {
+  room_id: Float!
+  room_name: String!
+  owner_id: Float!
+  participants: [User!]!
+}
+
+type Query {
+  me: User!
+  getRoomById(id: GetRoomInput!): Room!
+}
+
+input GetRoomInput {
+  id: Float!
+}
+
+type Mutation {
+  signUp(authData: SignUpInput!): String!
+  login(authData: SignInInput!): String!
+  createChat(roomProps: CreateRoomInput!): Room!
+  inviteToRoom(inviteProps: InviteToRoomInput!): Room!
+  removeUser(removeProps: RemoveUserInput!): Room!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input CreateRoomInput {
+  owner_id: Float!
+  room_name: String!
+}
+
+input InviteToRoomInput {
+  roomId: Float!
+  userId: Float!
+}
+
+input RemoveUserInput {
+  user_id: Float!
+  room_id: Float!
+}

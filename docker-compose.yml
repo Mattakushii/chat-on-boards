@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  database:
+    container_name: chat_db
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: maksimvahtel
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db
+
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    links:
+      - database:database # my database container is called postgres, not db
+    environment:
+      - DATABASE_URL=postgres://maksimvahtel:root@database:5432/db?sslmode=disable
+    depends_on:
+      - database
