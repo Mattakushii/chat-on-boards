@@ -4,13 +4,14 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoomModule } from './room/room.module';
 import { UserModule } from './user/user.module';
+import { MarkModule } from './mark/mark.module';
 
 @Module({
-  imports: [UserModule, GraphQLModule.forRoot({
+  imports: [GraphQLModule.forRoot({
     autoSchemaFile: 'schema.gql',
     playground: true,
     installSubscriptionHandlers: true,
     context: ({req}) => ({headers: req.headers})
-  }), TypeOrmModule.forRoot(), RoomModule],
+  }), TypeOrmModule.forRoot(),UserModule, RoomModule, MarkModule],
 })
 export class AppModule { }

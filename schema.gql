@@ -17,6 +17,13 @@ type Room {
   participants: [User!]!
 }
 
+type Status {
+  id: Float!
+  firstName: String!
+  lastName: String!
+  room_id: [Float!]!
+}
+
 type Query {
   me: User!
   getRoomById(id: GetRoomInput!): Room!
