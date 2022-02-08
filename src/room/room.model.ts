@@ -1,3 +1,5 @@
+import { Message } from "./../message/message.model";
+import { Status } from "./../status/status.model";
 import { Field, ObjectType } from "@nestjs/graphql";
 import { User } from "src/user/user.model";
 import {
@@ -5,6 +7,8 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -27,4 +31,15 @@ export class Room {
   @JoinTable()
   @Field(() => [User])
   participants: User[];
+
+  @OneToMany(() => Status, (status) => status.id)
+  @Field(() => [Status], { nullable: true })
+  statuses: Status[];
+
+  //может оно и не надо
+
+  @ManyToOne(() => Message, (message) => message.message_id)
+  @JoinTable()
+  @Field(() => [Message])
+  messages: Message[];
 }

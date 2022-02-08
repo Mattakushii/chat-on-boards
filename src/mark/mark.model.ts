@@ -17,10 +17,6 @@ export class Mark {
 
   @Column()
   @Field()
-  test: string;
-
-  @Column()
-  @Field()
   description: string;
 
   @Column()

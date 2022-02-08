@@ -5,6 +5,8 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -17,14 +19,13 @@ export class Status {
 
   @Column()
   @Field()
-  firstName: string;
+  name: string;
 
   @Column()
   @Field()
-  lastName: string;
+  description: string;
 
-  @ManyToMany(() => Room, (room) => room.room_id, { cascade: true })
-  @JoinTable()
-  @Field(() => [Number])
-  room_id: number[];
+  @ManyToOne(() => Room, (room) => room.statuses, { cascade: true })
+  @Field(() => Room)
+  room: Room;
 }
