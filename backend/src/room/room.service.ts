@@ -24,6 +24,12 @@ export class RoomService {
     return await this.roomRepo.save(room);
   }
 
+  /**
+   * Добавляет пользователя в чат
+   * @param {number} room_owner - id администратора комнаты.
+   * @param {number} roomId - id комнаты
+   * @param {number} userId - id приглашаемого пользователя
+   */
   async inviteToRoom({ room_owner, roomId, userId }: InviteRoomType) {
     const room = await this.getRoomById({ id: roomId });
     const user = await this.userRepo.findOne(userId);

@@ -1,0 +1,39 @@
+Arguments: 
+  /opt/homebrew/Cellar/node/17.0.1/bin/node /usr/local/bin/yarn add concurently
+
+PATH: 
+  /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/maksimvahtel/Library/Android/sdk/emulator:/Users/maksimvahtel/Library/Android/sdk/tools:/Users/maksimvahtel/Library/Android/sdk/tools/bin:/Users/maksimvahtel/Library/Android/sdk/platform-tools:/Users/maksimvahtel/Library/Android/sdk/emulator:/Users/maksimvahtel/Library/Android/sdk/tools:/Users/maksimvahtel/Library/Android/sdk/tools/bin:/Users/maksimvahtel/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  17.0.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  SyntaxError: /Users/maksimvahtel/proj/nest_chat/package.json: Unexpected string in JSON at position 208
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "nest_chat",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Mattakushii/chat-on-boards.git",
+    "author": "Mattakushii <bitar1337@gmail.com>",
+    "license": "MIT"
+    "scripts": {}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

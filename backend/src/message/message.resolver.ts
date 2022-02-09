@@ -7,7 +7,6 @@ import {
   Context,
   Field,
   InputType,
-  Int,
   Mutation,
   Resolver,
   Subscription,
@@ -52,6 +51,7 @@ export class MessageResolver {
     return message;
   }
 
+  // подписки
   @Subscription(() => Message, {
     filter: (
       payload: { messageSended: Message },
@@ -62,12 +62,6 @@ export class MessageResolver {
         };
       },
     ) => {
-      console.log(variables);
-      console.log(
-        variables.data.rooms.includes(payload.messageSended.room_id) &&
-          payload.messageSended.author.id !== variables.data.user_id,
-      );
-
       return (
         variables.data.rooms.includes(payload.messageSended.room_id) &&
         payload.messageSended.author.id !== variables.data.user_id
