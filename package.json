@@ -8,6 +8,8 @@
   "scripts": {
     "start:backend": "cd backend && yarn start:dev",
     "start:frontend": "cd frontend && yarn start",
+    "start:webpackDev": "cd frontend && yarn start:dev",
+    "start:dev": "concurrently -c \"blue,yellow\" -n \"BACKEND,FRONTEND\" \"yarn start:backend\" \"yarn start:webpackDev\"",
     "start:all": "concurrently -c \"blue,yellow\" -n \"BACKEND,FRONTEND\" \"yarn start:backend\" \"yarn start:frontend\""
   },
   "devDependencies": {
