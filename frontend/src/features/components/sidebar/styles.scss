@@ -1,0 +1,22 @@
+@import '@styles/colors.module.scss';
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  font-size: 3rem;
+}
+
+.sidebar-item {
+  display: flex;
+  text-decoration: none;
+  color: $primary-text-color;
+  &-icon {
+    margin-right: 2rem;
+
+    svg path {
+        stroke: $secondary-text-color;
+      }
+    
+  }
+}

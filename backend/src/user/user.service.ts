@@ -43,7 +43,7 @@ export class UserService {
   }
 
   async login(authData: SignInInput) {
-    const { email, password } = authData;
+    const { email, password } = authData;    
 
     const user = await this.userRepo.findOne({ email });
 

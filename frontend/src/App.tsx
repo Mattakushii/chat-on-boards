@@ -1,11 +1,18 @@
-import "./index.scss"
+/* eslint-disable import/no-default-export */
+import './index.scss'
+
+import React from 'react'
+import { ApolloProvider } from '@apollo/client'
+
+import { client } from './api'
+import { Router } from './routes/router'
 
 function App() {
   return (
-    <div className="container">
-      HELLO WEBPACK
-    </div>
-  );
+    <ApolloProvider client={client}>
+      <Router />
+    </ApolloProvider>
+  )
 }
 
-export default App;
+export default App

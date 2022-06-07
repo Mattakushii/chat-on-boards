@@ -1,0 +1,27 @@
+@import "@styles/colors.module.scss";
+
+.button-layout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  border-radius: 20px;
+  font-size: 4rem;
+  &:hover {
+    border-color: $primary-hover;
+  }
+  &:active {
+    border-color: $primary-active;
+  }
+  &:disabled {
+    background-color: $primary-color;
+    cursor: default;
+  }
+}
+
+.spinner-color {
+  stroke: $white-text !important;
+}
