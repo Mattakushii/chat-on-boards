@@ -1,5 +1,6 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Chat } from "src/chat/chat.model";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("users")
 @ObjectType()
@@ -10,17 +11,20 @@ export class User {
 
   @Column()
   @Field()
-  firstName: string;
+  name: string;
 
   @Column()
   @Field()
-  lastName: string;
+  surname: string;
 
   @Column({ unique: true })
   @Field()
   email: string;
 
   @Column()
-  @Field()
   password: string;
+
+  @ManyToMany(() => Chat, (chat) => chat.id, { cascade: true })
+  @Field(() => [Chat])
+  chats: Chat[];
 }

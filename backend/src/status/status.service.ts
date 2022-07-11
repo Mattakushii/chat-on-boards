@@ -1,5 +1,5 @@
 import { User } from "./../user/user.model";
-import { Room } from "src/room/room.model";
+import { Chat } from "src/chat/chat.model";
 import { Repository } from "typeorm";
 import { Status } from "./status.model";
 import { BadRequestException, Injectable } from "@nestjs/common";
@@ -9,7 +9,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 export class StatusService {
   constructor(
     @InjectRepository(Status) private statusRepo: Repository<Status>,
-    @InjectRepository(Room) private roomRepo: Repository<Room>,
+    @InjectRepository(Chat) private roomRepo: Repository<Chat>,
   ) {}
 
   async createStatus(

@@ -8,6 +8,8 @@ import { client } from './api'
 import { Router } from './routes/router'
 
 function App() {
+  console.log(123)
+
   return (
     <ApolloProvider client={client}>
       <Router />

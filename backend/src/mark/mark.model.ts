@@ -23,8 +23,6 @@ export class Mark {
   @Field()
   author: number;
 
-  @ManyToMany(() => Status, (status) => status.id, { cascade: true })
-  @JoinTable()
   @Field(() => Status)
   status_id: Status;
 }

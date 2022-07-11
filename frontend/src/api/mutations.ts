@@ -5,3 +5,20 @@ export const LOGIN = gql`
     login(authData: $data)
   }
 `
+
+export const SEND_MESSAGE = gql`
+  mutation sendSMS($data: SendMessageInput!) {
+    sendMessage(messageData: $data) {
+      id
+      text
+      date
+      chat {
+        id
+      }
+      author {
+        id
+        name
+      }
+    }
+  }
+`

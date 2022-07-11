@@ -3,20 +3,18 @@ export const routePath = {
   auth: {
     path: '/auth',
   },
-  register: { path: '/registration' },
-  main: { path: '/main' },
-  favorites: { path: '/favorites' },
+  main: {
+    path: '/main',
+  },
   messenger: {
     path: '/messenger',
-    chat: {
+  },
+  chat: {
+    path: '/messenger/:id',
+    boards: {
       path: ':id',
     },
   },
-
-  workshops: { path: '/workshops' },
-  workshop: { path: '/workshop/:id' },
-  feed: { path: '/feed' },
-  search: { path: '/search' },
   error404: { path: `404` },
   fallback: { path: '*' },
 }

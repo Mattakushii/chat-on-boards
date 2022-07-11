@@ -1,5 +1,5 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Room } from "src/room/room.model";
+import { Chat } from "src/chat/chat.model";
 import {
   Column,
   Entity,
@@ -24,8 +24,4 @@ export class Status {
   @Column()
   @Field()
   description: string;
-
-  @ManyToOne(() => Room, (room) => room.statuses, { cascade: true })
-  @Field(() => Room)
-  room: Room;
 }

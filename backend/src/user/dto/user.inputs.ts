@@ -9,10 +9,10 @@ export class SignUpInput {
   password: string;
 
   @Field()
-  firstName: string;
+  name: string;
 
   @Field()
-  lastName: string;
+  surname: string;
 }
 
 @InputType()

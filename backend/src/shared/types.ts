@@ -1,11 +1,10 @@
 import { User } from "./../user/user.model";
 export type CreateRoomType = {
-  owner_id: number;
+  admin: User;
   room_name: string;
 };
 
 export type InviteRoomType = {
-  room_owner: number;
   roomId: number;
   userId: number;
 };

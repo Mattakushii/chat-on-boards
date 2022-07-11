@@ -1,0 +1,84 @@
+@import '@styles/colors.module.scss';
+
+.container {
+  background-color: #181a1c;
+  min-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  overflow: hidden;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  background-color: #27292d;
+  padding: 4rem;
+  border-radius: 4rem;
+  color: #d5d5d5;
+  box-shadow: 0px 0px 100px 6px rgba(83, 119, 146, 0.1);
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+
+  &-avatar {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 2rem;
+    overflow: hidden;
+
+    img {
+      width: 13rem;
+      height: 13rem;
+    }
+  }
+
+  &-info {
+    flex:1;
+    margin-left: 3rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    h3 {
+    font-size: 6rem;
+
+    }
+  }
+}
+
+.status {
+  font-size: 3rem;
+  color: #717277;
+
+  span {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1rem;
+  }
+}
+
+.online {
+  background-color: #54d497;
+}
+
+//SETTINGS
+
+.settings {
+  color: #d1d1d1
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  padding: 4rem 1rem;
+
+  &-icon {
+    display: flex;
+    justify-content: center;
+    margin-right: 3rem;
+  }
+}
+
+

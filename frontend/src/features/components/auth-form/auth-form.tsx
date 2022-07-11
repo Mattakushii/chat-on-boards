@@ -1,26 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { ReactComponent as Email } from '@assets/icons/email.svg'
 import { ReactComponent as Lock } from '@assets/icons/lock.svg'
 import Donut1 from '@assets/images/form-donat.png'
-import { setLocalItem } from '@features/helpers'
+import { getLocalItem, setLocalItem } from '@features/helpers'
 import { authRequestModel } from '@models'
 import { BorderedButton, Divider, Input, Link, PrimaryButton } from '@ui'
 
 import { LOGIN } from '../../../api'
+import { routePath } from '../../../routes/route-path'
 import styles from './index.module.scss'
 
 export function AuthForm() {
   const [loginUser, { data, loading, error }] = useMutation(LOGIN)
+  const navigate = useNavigate()
 
   const methods = useForm()
 
   useEffect(() => {
     if (data) {
       setLocalItem('authToken', data?.login)
+      navigate(routePath.messenger.path)
     }
-  }, [data])
+  }, [data, navigate])
+
+  useEffect(() => {
+    if (getLocalItem('authToken')) {
+      navigate(routePath.messenger.path)
+    }
+  }, [navigate])
 
   const onSubmit = (values: any) => {
     loginUser({ variables: { data: values } })

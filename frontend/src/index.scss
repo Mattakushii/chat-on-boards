@@ -1,12 +1,15 @@
+@import url(./styles/fonts.scss);
+
 * {
   padding: 0;
   margin: 0;
-  font-family: "open sans";
+  font-family: "RobotoRegular";
   box-sizing: border-box;
 }
 
 html {
   font-size: 4px;
+  height: 100vh;
 }
 
 button {
@@ -25,10 +28,13 @@ input {
   margin: 0; /* 2 */
 }
 
+:global(#root) {
+  height: 100vh;
+}
 
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
-html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 body{margin:0; font-size: 4rem; height: 100vh; width: 100%;}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
@@ -64,7 +70,7 @@ input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-w
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
 fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}
 legend{border:0;padding:0}
-textarea{overflow:auto}
+textarea {border: none;overflow: auto;outline: none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;resize: none; /*remove the resize handle on the bottom right*/}
 optgroup{font-weight:bold}
 table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0}

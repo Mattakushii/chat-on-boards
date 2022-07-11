@@ -1,55 +1,55 @@
-import { RoomService } from "./../room/room.service";
-import { UserService } from "./../user/user.service";
-import { SendMessageType } from "./../shared/types";
+import { User } from "src/user/user.model";
 import { Repository } from "typeorm";
 import { Message } from "./message.model";
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Chat } from "src/chat/chat.model";
+import {
+  PaginatedChatMessagesArgs,
+  PaginatedMessages,
+} from "./dto/message.inputs";
+import { paginate } from "src/shared/paginate";
 
 @Injectable()
 export class MessageService {
   constructor(
     @InjectRepository(Message) private messageRepo: Repository<Message>,
-    private userService: UserService,
-    private roomService: RoomService,
+    @InjectRepository(Chat) private chatrepo: Repository<Chat>,
   ) {}
 
-  async sendMessage(data: SendMessageType) {
-    const { room_id, user, text } = data;
-
-    const isInGroup = await this.checkIsUserInGroup(room_id, user.id);
-
-    if (!isInGroup) {
-      throw new BadRequestException("User isn't path of this room");
-    }
+  //отправить сообщение [x]
+  async sendMessage(
+    author: User,
+    text: string,
+    chatId: number,
+  ): Promise<Message> {
+    const chat = await this.chatrepo.findOne(chatId);
 
     const message = new Message();
-
-    message.author = user;
+    message.author = author;
+    message.text = text;
     message.date = new Date();
-    message.room_id = room_id;
-    message.text_message = text;
+    message.chat = chat;
 
-    return await this.messageRepo.save(message);
+    const savedMessage = await this.messageRepo.save(message);
+
+    await this.chatrepo.save({ ...chat, lastMessage: savedMessage });
+
+    return savedMessage;
   }
 
-  async checkIsUserInGroup(roomId: number, userId: number): Promise<boolean> {
-    return await this.roomService
-      .getParticipants(roomId)
-      .then((res) => {
-        if (res && res.length > 0) {
-          const user = res.find((user) => user.id === userId);
-          if (user) {
-            return true;
-          }
+  //получить список сообщений с пагинацией [x]
+  async getPaginatedMessages(
+    paginationArgs: PaginatedChatMessagesArgs,
+  ): Promise<PaginatedMessages> {
+    const query = this.messageRepo
+      .createQueryBuilder("messages")
+      .leftJoinAndSelect("messages.author", "users")
+      .leftJoinAndSelect("messages.chat", "chat")
+      .select()
+      .where("messages.chatId = :chatId", { chatId: paginationArgs.chatId })
+      .orderBy({ ["messages.date"]: "DESC" });
 
-          return false;
-        } else {
-          throw new BadRequestException("User isn't path of this room");
-        }
-      })
-      .catch((e) => {
-        throw new BadRequestException(`Something went worng..: ${e.message}`);
-      });
+    return paginate(query, paginationArgs, "id", "messages.id");
   }
 }

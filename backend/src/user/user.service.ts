@@ -10,13 +10,13 @@ import { InjectRepository } from "@nestjs/typeorm";
 export class UserService {
   constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
 
-  createToken({ id, email, firstName, lastName }: User) {
+  createToken({ id, email, name, surname }: User) {
     return jwt.sign(
       {
         id,
         email,
-        firstName,
-        lastName,
+        name,
+        surname,
       },
       "secret",
     );
@@ -26,8 +26,8 @@ export class UserService {
     const password = await bcrypt.hash(user.password, 10);
 
     const userData: SignUpInput = {
-      firstName: user.firstName,
-      lastName: user.lastName,
+      name: user.name,
+      surname: user.surname,
       email: user.email.toLowerCase(),
       password,
     };
@@ -43,7 +43,7 @@ export class UserService {
   }
 
   async login(authData: SignInInput) {
-    const { email, password } = authData;    
+    const { email, password } = authData;
 
     const user = await this.userRepo.findOne({ email });
 
